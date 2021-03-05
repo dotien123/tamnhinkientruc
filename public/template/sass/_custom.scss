@@ -1,0 +1,100 @@
+.at-share-tbx-element .at-share-btn:focus,
+.at-share-tbx-element .at-share-btn:hover {
+    transform: translateY(-3px);
+    outline-offset: -1px;
+    color: inherit;
+}
+.at-share-tbx-element .at-share-btn,
+.at-share-tbx-element .at-share-btn {
+    transform: translateY(-3px) !important;
+    outline-offset: -1px !important;
+    color: inherit;
+}
+
+.floating__social .social__inside--floating ul.floating-social__list li.floating-social__items.back-to-top1:hover {
+    transform: translateX(0%) !important;
+}
+
+.single__content {
+    * {
+        max-width: 100%;
+    }
+    img {
+        width: 100% !important;
+        height: auto !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+.emtry_content-detail {
+    * {
+        max-width: 100%;
+    }
+    img {
+        width: 100% !important;
+        height: auto !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+.related__product .related__info .name__title span {
+    height: 48px;
+}
+.single__comment .single__box--comment input[type="text"],
+.single__comment .single__box--comment input[type="number"] {
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+}
+
+.single__comment .single__box--comment {
+    .space__pd-left {
+        @extend .d-flex, .align-items-lg-center, .flex-column, .flex-lg-row;
+        padding: 5px 22px;
+    }
+    .radio-comment {
+        margin-right: 10px;
+        @extend .my-2, .my-lg-0;
+    }
+    
+    .input-comment {
+        @extend .d-flex, .flex-column, .flex-md-row;
+        .iput-item {
+            margin-bottom: 0;
+            @extend .my-1, .my-md-0;
+            &:last-child{
+                @media(min-width: 768px){
+                    margin-left: 33px;
+                }
+                input{
+                    margin: 0;
+                }
+            }
+            input {
+                line-height: 33px;
+                width: 211px;
+                max-width: 100%;
+            }
+        }
+    }
+
+    .btn-comment {
+        @extend .ml-0, .ml-lg-auto, .my-2, .my-lg-0;
+        a {
+            border: unset;
+            background: #0092e8;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 6px 13px;
+            border-radius: 3px;
+            display: inline-block;
+            position: relative;
+        }
+    }
+}

@@ -1,0 +1,5 @@
+.mm-menu_multiline .mm-listitem__text {
+  text-overflow: clip;
+  white-space: normal;
+}
+/*# sourceMappingURL=mmenu.multiline.css.map */

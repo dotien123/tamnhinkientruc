@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AACI,mBADe,AACd,IAAK,CAAA,kBAAkB,EAAE;EACtB,QAAQ,EAAE,QAAQ;CACrB;;AAHL,AAMQ,mBANW,AAMV,qBAAI,EANb,mBAAmB,AAOV,wBAAO,CAAC;EACL,UAAU,EAAE,GAA0B;CACzC;;AAGJ,AACG,6BADO,CACP,SAAS,CAAC;EACN,OAAO,EAAE,gBAAgB;CAC5B;;AAHJ,AAKG,6BALO,CAKP,UAAU,GAAG,SAAS,CAAC;EACnB,MAAM,EAAE,eAAe;EACvB,MAAM,EAAE,eAAe;CAC1B;;AARJ,AAWO,6BAXG,CAWH,qBAAqB,AAAA,IAAK,CAAA,mBAAmB,EAAE,SAAS,CAAC;EACrD,OAAO,EAAE,eAAe;CAC3B",
+    "sources": [
+        "../public/mmenu-js-master/src/addons/autoheight/mmenu.autoheight.scss",
+        "../public/mmenu-js-master/src/_mixins.scss",
+        "../public/mmenu-js-master/src/_includes.scss",
+        "../public/mmenu-js-master/src/_variables.scss"
+    ],
+    "names": [],
+    "file": "mmenu.autoheight.css"
+}

@@ -1,0 +1,11 @@
+.btn-log {
+    background: #29a41c;
+    line-height: 46px;
+    font-weight: 700;
+    color: #fff;
+    padding: 0 45px;
+    border-radius: 23px;
+    margin: 5px auto;
+    display: block;
+}
+

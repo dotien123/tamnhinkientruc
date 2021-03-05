@@ -1,0 +1,99 @@
+.box__tuvan {
+  .single__comment {
+    margin-top: 30px;
+  }
+  .code__safe-contact-book {
+    .g-recaptcha {
+      div {
+        margin-right: auto;
+      }
+    }
+  }
+  .btn--social__components {
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 35px;
+  }
+  @media (min-width: 1200px) {
+    .container {
+      padding: 10px;
+    }
+  }
+
+  .col-lg-6 {
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+    @media (max-width: 991px) {
+      padding: 15px !important;
+    }
+  }
+
+  .form--tuvan {
+    .main-title__tuvan {
+      span {
+        font-size: 20px;
+        color: #0092e8;
+        font-weight: bold;
+      }
+
+      .box__form {
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+
+        input,
+        textarea {
+          margin-bottom: 15px;
+          border: 1px solid #707070;
+          border-radius: 7px;
+          padding: 13px;
+          font-size: 16px;
+        }
+
+        .code__safe {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .absolute__code-safe {
+            position: absolute;
+            top: 20%;
+            right: 2%;
+          }
+
+          input {
+            width: 100%;
+          }
+        }
+
+        .btn--submit {
+          text-align: left;
+
+          input {
+            background: #093981;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 0.03em;
+            padding: 9px 43px;
+          }
+        }
+      }
+    }
+  }
+
+  .maps {
+    .main-title__maps {
+      margin-bottom: 10px;
+
+      span {
+        font-size: 20px;
+      }
+    }
+  }
+}

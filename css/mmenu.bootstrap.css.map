@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,IAAI,AAAA,WAAW,CAAC,YAAY,CAAC;EACzB,OAAO,EAAE,KAAK;CACjB",
+    "sources": [
+        "../public/mmenu-js-master/src/wrappers/bootstrap/mmenu.bootstrap.scss"
+    ],
+    "names": [],
+    "file": "mmenu.bootstrap.css"
+}

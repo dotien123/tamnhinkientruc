@@ -1,0 +1,199 @@
+.single__comment {
+    span.single__heading--title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #0092e8;
+        border-bottom: 2px solid #0092e8;
+        padding-bottom: 5px;
+    }
+
+    .single__comment--list {
+        margin-top: 30px;
+    }
+
+    .single__comment--people {
+        img {
+            width: 45px;
+            height: 45px;
+            border-radius: 100%;
+        }
+        span.avatar {
+            position: relative;
+            padding: 7px;
+            border-radius: 100%;
+            font-size: 20px;
+            font-weight: bold;
+
+            &:before {
+                content: "";
+                position: absolute;
+                background: #ffdd00;
+                width: 45px;
+                height: 45px;
+                z-index: -1;
+                border-radius: 100%;
+                top: -5px;
+                left: 50%;
+                right: 0;
+                bottom: 0;
+                transform: translate(-50%);
+            }
+        }
+
+        span.name {
+            font-size: 20px;
+            font-weight: bold;
+            padding-left: 10px;
+        }
+    }
+
+    .single__comment--reply {
+        margin-top: 10px;
+        position: relative;
+        left: 7%;
+        @media (max-width: 992px) {
+            left: 0;
+        }
+
+        p {
+            margin-bottom: 5px;
+            font-size: 16px;
+            color: #5e5e5e;
+        }
+    }
+
+    .single__comment--meta {
+        position: relative;
+        left: 7%;
+        @media (max-width: 991px) {
+            left: 0 !important;
+        }
+
+        a:first-child {
+            padding-right: 60px;
+            @media (max-width: 991px) {
+                padding-right: 20px;
+            }
+        }
+
+        a {
+            padding-right: 30px;
+            @media (max-width: 991px) {
+                padding-right: 20px;
+            }
+
+            img {
+                padding-right: 5px;
+            }
+        }
+
+        span {
+            padding-right: 10px;
+            font-size: 12px;
+            color: #5e5e5e;
+            letter-spacing: 0.03em;
+        }
+    }
+
+    .comment__reply--after {
+        background: #f6f6f6;
+        z-index: -1;
+        padding: 25px;
+        margin-top: 35px !important;
+        position: relative;
+        left: 80px;
+        @media (max-width: 992px) {
+            left: 0;
+        }
+
+        .single__comment--people span.avatar {
+            position: relative;
+
+            &:before {
+                content: "";
+                position: absolute;
+                background: #a1dfff;
+                width: 45px;
+                height: 45px;
+                z-index: -1;
+                border-radius: 100%;
+                top: -5px;
+                left: 50%;
+                right: 0;
+                bottom: 0;
+                transform: translate(-50%);
+            }
+        }
+    }
+
+    .single__box--comment {
+        margin-top: 50px;
+
+        .box__comment--boder-unset {
+            border: 1px solid #bbbbbb;
+            border-radius: 4px;
+            width: 100%;
+            margin-top: -5px;
+            margin-right: 5px;
+        }
+
+        .space__pd-left {
+            @media (min-width: 992px) {
+                display: flex;
+            }
+            @media (max-width: 991px) {
+                padding-left: 23px;
+            }
+        }
+
+        textarea {
+            border: 1px solid #bbb;
+            border-radius: 4px;
+            padding-left: 15px;
+            padding-top: 20px;
+            font-size: 16px;
+            color: #5e5e5e;
+            width: 100%;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            border: #dcdcdc;
+            font-size: 16px;
+            color: #5e5e5e;
+            padding-left: 10px;
+        }
+
+        input[type="number"] {
+            margin-left: 40px;
+            @media (max-width: 992px) {
+                margin-left: 0;
+            }
+        }
+
+        input.radio-second {
+            margin-left: 20px;
+        }
+
+        span.near-radio {
+            padding-left: 7px;
+        }
+
+        input[type="submit"] {
+            border: unset;
+            background: #0092e8;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 4px 13px;
+            margin: 5px;
+            border-radius: 3px;
+            display: inline-block;
+            position: relative;
+            left: 21%;
+            @media (max-width: 992px) {
+                left: 0;
+            }
+        }
+    }
+}

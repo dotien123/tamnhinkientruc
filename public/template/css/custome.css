@@ -1,0 +1,280 @@
+@charset "UTF-8";
+/* FONT PATH
+ * -------------------------- */
+header .form--search input {
+    position: absolute;
+    z-index: 9999;
+    top: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+header .search__menu:hover .form--search {
+    opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+header .form--search {
+    position: relative;
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+.gm-style .gm-style-iw-c {
+    padding-left: 0px !important;
+    padding-top: 0px !important;
+    max-height: 400px !important;
+}
+.gm-style-iw-d {
+    max-height: 400px !important;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.fb_dialog {
+    /*opacity: 0.000000001;*/
+    /*z-index: 1111;*/
+}
+.box-chat-right {
+    bottom: 34px !important;
+}
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.addthis_inline_share_toolbox {
+    margin-top: -2px;
+    margin-left: 3px;
+}
+.at-share-btn-elements {
+    transform: scale(0.88);
+    transform-origin: left;
+}
+.comment_box {
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    display: none;
+}
+.name_box {
+    padding: 20px;
+    font-size: initial;
+    font-weight: 700;
+}
+.content_box {
+    font-size: inherit;
+    padding-left: 50px;
+    padding-bottom: 10px;
+}
+.product-slide {
+    display: none;
+}
+
+.back-to-top {
+    bottom: 100px;
+}
+
+/* The Modal (background) */
+.modal_img {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000000000; /* Sit on top */
+    /*padding-top: 100px; !* Location of the box *!*/
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+/* Next & previous buttons */
+.modal_img .prev,
+.modal_img .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: white;
+    display: none;
+}
+
+/* Position the "next button" to the right */
+.modal_img .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.modal_img .prev:hover,
+.modal_img .next:hover {
+}
+
+/* Modal Content (image) */
+.modal_img .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+.modal_img .fck {
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+/* Caption of Modal Image */
+.modal_img #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    /*height: 150px;*/
+}
+
+/* Add Animation */
+.modal_img .modal-content,
+.modal_img #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {
+        -webkit-transform: scale(0);
+    }
+    to {
+        -webkit-transform: scale(1);
+    }
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+/* The Close Button */
+.modal_img .close {
+    position: absolute;
+    top: 0;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    opacity: 1;
+}
+
+.modal_img .close:hover,
+.modal_img .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.img-fck {
+    cursor: pointer;
+}
+
+.box__heading .main__name-title .shape:before {
+    top: unset;
+    bottom: 0;
+}
+
+.box__heading .main__name-title .shape {
+    width: 100%;
+}
+
+.code__safe-contact-book .g-recaptcha > div {
+    width: unset !important;
+}
+
+.sidebar .list-car .car-name {
+    -webkit-box-orient: unset;
+}
+
+.box__news-event .list-group-item,
+.sidebar .box__select--dropdown .dropdown #dropdownMenuButton,
+.sidebar .box__select--dropdown .dropdown-menu {
+    font-size: 14px;
+}
+.sidebar .box__select--dropdown .dropdown-menu {
+    left: -10px !important;
+}
+@media (max-width: 767px) {
+    .addthis_inline_share_toolbox {
+        margin-top: 10px;
+    }
+    .breadcum__detail--product {
+        margin: 20px 0 20px !important;
+    }
+    .box__heading .main__name-title .shape {
+        white-space:unset;    font-size: 16px;
+    }
+    .box__heading .main__name-title .shape:before {
+        border-width: 27px 0 0 30px;
+    }
+}
+
+.addthis_inline_share_toolbox {
+    margin-top: 0px;
+}
+
+article .post-content .post__btn--more a:hover {
+    color: #0092e8 !important;
+}
+.box__content--product .product__tutorial ul li,.single__content, .info .choose-us .wrap .item .desc  {
+    word-break: break-word;
+}
+article .post-content .post__main-title {
+    height:52px;
+}
+
+.emtry_content-detail {
+    word-break: break-word;
+}
+
+.sp__detail--product .sp__detail--content .emtry_content-detail iframe {
+
+}
+
+#chat_biz_manager_box {
+    z-index: 0!important;
+}
+.single__content * {
+    text-indent: unset!important;
+}
+
+header .header__bottom ul.menu__list li.menu__item .sub-menu ul.sub__menu-list li.sub__menu-items a {
+    display: block;
+}

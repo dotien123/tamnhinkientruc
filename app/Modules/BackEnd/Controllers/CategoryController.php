@@ -1,0 +1,236 @@
+<?php
+
+namespace App\Modules\BackEnd\Controllers;
+
+
+use App\Libs\LoadDynamicRouter;
+use App\Models\CategoryImage;
+use Illuminate\Http\Request;
+use App\Models\Category as THIS;
+
+class CategoryController extends BackendController
+{
+    protected $recperpage = 9999;
+    protected $timeStamp = 'created';
+    public function __construct(){
+        parent::__construct(new THIS(),[
+            [
+                'title' => 'required|min:3|max:250',
+//                'sort' => 'numeric',
+            ],
+            [
+                'title.required' => 'Tiêu đề danh mục không được bỏ trống',
+                'title.min' => 'Tiêu đề danh mục tối thiểu 3 ký tự',
+                'title.max' => 'Tiêu đề danh mục tối đa 250 ký tự',
+                'sort.numeric' => 'Sắp xếp phải là kiểu số',
+            ]
+        ]);
+        LoadDynamicRouter::loadRoutesFrom('FrontEnd');
+        \View::share('type', THIS::getType());
+        $this->registerAjax('get-cat', 'ajaxGetCat');
+        $this->registerAjax('fetch-cat-lang', 'ajaxFetchCat');
+        $this->registerAjax('removeImageCategory' , 'ajaxRemoveImageCat');
+        $this->registerAjax('removeimg', 'ajaxItemImgDel', 'delete');
+    }
+
+    public function ajaxItemImgDel(Request $request)
+    {
+        if($request->id > 0){
+            $data = THIS::where('id', $request->id)->where('image', $request->img)->first();
+            if($data){
+                $data->image = null;
+                $data->save();
+            }
+            return \Lib::ajaxRespond(true, 'ok', ['json' => 'xóa ảnh']);
+        }
+        return \Lib::ajaxRespond(false, 'Không tìm thấy dữ liệu');
+    }
+
+    public function index(Request $request){
+        $order = 'type, pid, sort, title';
+        $cond = [];
+        if($request->lang != ''){
+            $cond[] = ['lang','=',$request->lang];
+        }
+        if($request->type != ''){
+            $cond[] = ['type','=',$request->type];
+        }
+        if ($request->status != '') {
+            $cond[] = ['status', $request->status];
+        } else {
+            $cond[] = ['status', '!=', -1];
+        }
+        if($request->title != ''){
+            $cond[] = ['title','LIKE','%'.$request->title.'%'];
+        }
+        $time = explode(' - ', \request('time_between'));
+        if(is_array($time)) {
+            foreach($time as $k => $t) {
+                $timeStamp = \Lib::getTimestampFromVNDate($t);
+                if (!$k) {
+                    array_push($cond, ['created', '>=', $timeStamp]);
+                }else {
+                    array_push($cond, ['created', '<=', $timeStamp]);
+                }
+            }
+        }
+        if(!empty($cond)) {
+            $data = THIS::where($cond)->where('status' , '>=' , THIS::STATUS_INACTIVE)->orderByRaw($order)->paginate($this->recperpage);
+        }else{
+            $data = THIS::where('status' , '>=' , THIS::STATUS_INACTIVE)->orderByRaw($order)->paginate($this->recperpage);
+        }
+
+        return $this->returnView('index', [
+            'data' => $this->fetchResult($data),
+            'search_data' => $request
+        ]);
+    }
+
+    public function fetchResult($data){
+        $tmp = [];
+        $type = THIS::getType();
+        foreach($data as $key => $item){
+            if(isset($type[$item->type])) {
+                if(!isset($tmp[$item->type])){
+                    $tmp[$item->type] = [
+                        'title' => $type[$item->type],
+                        'type' => $item->type,
+                        'cats' => []
+                    ];
+                }
+                if($item->pid == 0){
+                    $tmp[$item->type]['cats'][$item->id] = [
+                        'data' => $item,
+                        'sub' => []
+                    ];
+                    unset($data[$key]);
+                }elseif(isset($tmp[$item->type]['cats'][$item->pid])){
+                    $tmp[$item->type]['cats'][$item->pid]['sub'][$item->id] = [
+                        'data' => $item,
+                        'sub' => []
+                    ];
+                    unset($data[$key]);
+                }
+            }
+        }
+        foreach($data as $key => $item){
+            if(isset($type[$item->type])) {
+                foreach ($tmp[$item->type]['cats'] as $i => $menu){
+                    foreach($menu['sub'] as $k => $sub){
+                        if($k == $item->pid){
+                            $tmp[$item->type]['cats'][$i]['sub'][$k]['sub'][$item->id] = $item;
+                        }
+                    }
+                }
+            }
+        }
+        return $tmp;
+    }
+
+    public function showAddForm() {
+        $preview = request('preview');
+        $type_view = request('view', 'full');
+        return $this->returnView('edit', [
+            'preview' => $preview,
+            'view' => $type_view,
+        ]);
+    }
+
+    public function buildValidate(Request $request){
+
+        parent::buildValidate($request); // TODO: Change the autogenerated stub
+        if ($request->hasFile('image')) {
+            $this->addValidate(['image' => ['mimes:jpeg,jpg,png,gif,webp','Ảnh đại diện']]);
+        }
+        if ($request->hasFile('image_seo')) {
+
+            $this->addValidate(['image_seo' => ['mimes:jpeg,jpg,png,gif,webp','Ảnh seo']]);
+        }
+    }
+
+    public function beforeSave(Request $request, $ignore_ext = [])
+    {
+        parent::beforeSave($request); // TODO: Change the autogenerated stub
+        $this->model->safe_title =  str_slug($request->title);
+        if($this->editID) {
+            $this->model->alias =  str_slug($request->title);
+        }
+        if($request->type < 0){
+            $this->setError(['type' => 'Vui lòng chọn loại danh mục']);
+        }
+        if ($request->hasFile('image_seo')) {
+            $this->uploadImage($request, $request->title_seo, 'image_seo');
+        }
+        //check position
+        $this->model->is_home = !is_null($request->is_home) ? $request->is_home : 0;
+        $this->model->is_sidebar = !is_null($request->is_sidebar) ? $request->is_sidebar : 0;
+        $this->model->alias = isset($request->alias) ? $request->alias : str_slug($request->title);
+        $this->model->sort = (int)$request->sort;
+
+        // upload Multiple
+        unset($this->model->images_upload);
+    }
+
+    public function afterSave(Request $request)
+    {
+        parent::afterSave($request) ; // TODO: Change the autogenerated stub
+        if (!empty($request->images_upload)) {
+            $fileName = $this->uploadImageMultiple($request, str_slug($request->title) , 'images_upload');
+            CategoryImage::addImages($fileName,$this->model->id,$this->model->type);
+        }
+    }
+
+    protected function ajaxGetCat(Request $request){
+        $menu = [];
+        if($request->type >= 0){
+            $menu = THIS::getCat($request->type, $request->lang);
+        }
+        return \Lib::ajaxRespond(true, 'ok', $menu);
+    }
+
+    protected function ajaxFetchCat(Request $request){
+        $data = THIS::getCat($request->type, $request->lang);
+        $data = \View::make("BackEnd::pages.category.option", [
+            'options' => $data,
+            'def' => $request->def
+        ])->render();
+        $data = \StringLib::trimHtml($data);
+        return \Lib::ajaxRespond(true, 'ok', $data);
+    }
+
+    public function showEditForm($id){
+        $data = THIS::find($id);
+        $preview = request('preview');
+        $type_view = request('view', 'full');
+        if(empty($data)){
+            return $this->notfound($id);
+        }
+        set_old($data);
+        $images_cat = CategoryImage::where('cat_id', '=' , $id)->get();
+        $data_image = [];
+        foreach ($images_cat as $item){
+            $data_image[] = [
+                'name_image' => \ImageURL::getImageUrl($item->image , 'category' , 'original'),
+                'id' => $item->id,
+            ];
+        }
+        if(isset($data)){
+            return $this->returnView('edit', [
+                'obj' => $data,
+                'image' => @json_encode($data_image),
+                'preview' => $preview,
+                'view' => $type_view,
+            ]);
+        }
+        return $this->notfound($id);
+    }
+
+    public function ajaxRemoveImageCat(Request $request){
+        $data = CategoryImage::find($request->id);
+        if(!empty($data)){
+            $data->delete();
+            return \Lib::ajaxRespond(true, 'success', $data);
+        }
+        return \Lib::ajaxRespond(false, 'Error system !!!');
+    }
+}

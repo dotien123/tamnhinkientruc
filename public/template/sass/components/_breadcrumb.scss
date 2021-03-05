@@ -1,0 +1,16 @@
+.breadcrumb-block{
+    background-color: #f3f3f3;
+    .breadcrumb{
+        background: transparent;
+        margin-bottom: 0;
+    }
+    a{
+        font-size: 14px;
+        color: rgba(80, 80, 80, 255);
+    }
+}
+@media (max-width: 767px){
+    .breadcrumb-block{
+        background-color: #ffffff;
+    }
+}
